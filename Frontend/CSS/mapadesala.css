@@ -1,0 +1,1229 @@
+.mapa-salas{
+  --free: #16a34a;
+  --busy: #dc2626;
+  --muted: #9ca3af;
+  --card-border: var(--borda);
+  --text: var(--texto);
+  --bg: var(--bg);
+ max-width:1400px; margin:0 auto; }
+
+.cabecalho-mapa{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:24px;
+  flex-wrap:wrap;
+  gap:16px;
+}
+
+.bloco-titulo-mapa{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.cabecalho-mapa h1{
+  font-size:26px;
+  font-weight:700;
+  color:var(--blue);
+  position:relative;
+}
+
+.cabecalho-mapa h1::after{
+  content:"";
+  position:absolute;
+  bottom:-6px;
+  left:0;
+  width:70px;
+  height:3px;
+  background:var(--orange);
+}
+
+.subtitulo-mapa{
+  font-size:13px;
+  color:#6b7280;
+  font-weight:600;
+}
+
+.controles-mapa{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.mapa-data{
+  height:36px;
+  padding:0 10px;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,.08);
+  background:#fff;
+  color:#374151;
+  font-weight:800;
+  font-size:13px;
+}
+
+.mapa-data:focus{
+  outline:none;
+  box-shadow:0 0 0 3px rgba(255,107,44,.18);
+  border-color:rgba(255,107,44,.55);
+}
+
+.filtro-periodo{
+  display:flex;
+  gap:4px;
+  padding:4px;
+  border-radius:999px;
+  background:rgba(255,255,255,.85);
+  border:1px solid rgba(0,0,0,.06);
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+}
+
+.botao-periodo{
+  padding:7px 14px;
+  border:none;
+  background:transparent;
+  color:#374151;
+  font-weight:800;
+  font-size:14px;
+  cursor:pointer;
+  border-radius:999px;
+  transition:background .12s ease, box-shadow .12s ease, transform .12s ease;
+}
+
+.botao-periodo:hover{ background:rgba(255,107,44,.08); }
+
+.botao-periodo.ativo{
+  background:#fff;
+  color:var(--orange);
+  box-shadow:0 6px 18px rgba(255,107,44,.15);
+}
+
+.botao-filtro{
+  position:relative;
+  width:36px;
+  height:36px;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,.08);
+  background:#fff;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+
+.botao-filtro img{ width:26px; }
+
+.botao-filtro:hover{
+  transform:translateY(-1px);
+  box-shadow:0 10px 22px rgba(0,0,0,.08);
+}
+
+.botao-filtro.tem-filtro::after{
+  content:"";
+  position:absolute;
+  top:6px;
+  right:6px;
+  width:9px;
+  height:9px;
+  border-radius:999px;
+  background:var(--orange);
+  box-shadow:0 0 0 3px rgba(255,107,44,.18);
+}
+
+.palco-salas{
+  position:relative;
+  overflow:hidden;
+  transition:height 220ms ease;
+  min-height:120px;
+}
+
+/* =========================
+   ANO
+   ========================= */
+.ano{
+  padding: 14px;
+}
+
+.navegacao-ano{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin-bottom: 14px;
+}
+
+.grade-ano{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 980px){
+  .grade-ano{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 720px){
+  .grade-ano{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.card-mes-ano{
+  border:1px solid rgba(0,0,0,.08);
+  background:#fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 22px rgba(0,0,0,.06);
+  padding: 14px;
+  cursor:pointer;
+  text-align:left;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.card-mes-ano:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(0,0,0,.08);
+}
+
+.titulo-mes-ano{
+  font-weight: 900;
+  color:#111827;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.meta-mes-ano{
+  color:#6b7280;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.nota-ano{
+  margin-top: 12px;
+  color:#6b7280;
+  font-size: 12px;
+  font-weight: 700;
+  text-align:center;
+}
+
+.tela{
+  position:absolute;
+  top:0; left:0;
+  width:100%;
+  will-change:transform, opacity;
+  transition:transform 260ms ease, opacity 260ms ease;
+}
+
+.tela.entra-da-direita{ transform:translateX(48px); opacity:0; }
+
+.tela.entra-da-esquerda { transform:translateX(-48px); opacity:0; }
+
+.tela.tela-ativa    { transform:translateX(0); opacity:1; }
+
+.tela.sai-para-esquerda    { transform:translateX(-48px); opacity:0; }
+
+.tela.sai-para-direita   { transform:translateX(48px); opacity:0; }
+
+.selo{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.2px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(0,0,0,.04);
+}
+
+.selo .ponto{
+  width:10px;
+  height:10px;
+  border-radius:999px;
+}
+
+.selo.livre{ color:var(--free); }
+
+.selo.livre .ponto{ background:var(--free); }
+
+.selo.ocupada{ color:var(--busy); }
+
+.selo.ocupada .ponto{ background:var(--busy); }
+
+.etiqueta-turno{
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.5px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(0,0,0,.04);
+  color:var(--text);
+  text-transform:uppercase;
+}
+
+.grade-salas{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+  gap:12px;
+}
+
+.card-sala{
+  background:#fff;
+  border:1px solid var(--card-border);
+  border-radius:10px;
+  padding:14px 16px;
+  transition:border-color .2s, box-shadow .2s;
+}
+
+.card-sala:hover{
+  border-color:rgba(255,107,44,.55);
+  box-shadow:0 2px 8px rgba(255,107,44,.15);
+}
+
+.cabecalho-sala{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.nome-sala{
+  font-size:16px;
+  font-weight:800;
+  color:var(--blue);
+  margin:0;
+}
+
+.tipo-sala{
+  font-size:11px;
+  font-weight:900;
+  color:var(--blue);
+  background:rgba(0,58,112,.08);
+  padding:6px 10px;
+  border-radius:999px;
+  text-transform:uppercase;
+}
+
+.lista-turnos{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.linha-turno{
+  border:1px solid var(--card-border);
+  border-radius:4px 12px 12px 4px;
+  padding:12px 12px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:8px;
+}
+
+.linha-turno.status--livre{
+  border-color:rgba(22,163,74,.22);
+  background:rgba(22,163,74,.06);
+}
+
+.linha-turno.status--ocupada{
+  border-color:rgba(220,38,38,.22);
+  background:rgba(220,38,38,.06);
+}
+
+.linha-turno.estado-passado{
+  opacity:.65;
+  filter:saturate(.85);
+}
+
+.linha-turno.estado-agora{
+  position:relative;
+}
+
+.linha-turno.estado-agora::before{
+  content:"";
+  position:absolute;
+  top:-1px;
+  bottom:-1px;
+  left:0;
+  width:3px;
+  border-radius:4px 0 0 4px;
+  background:rgba(255,107,44,.90);
+}
+
+.info-turno{
+  width:100%;
+  font-size:12px;
+  font-weight:700;
+  color:#374151;
+  line-height:1.25;
+
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+.lista-semana{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.linha-semana{
+  background:#fff;
+  border:1px solid var(--card-border);
+  border-radius:10px;
+  padding:12px;
+  display:flex;
+  gap:12px;
+  align-items:stretch;
+}
+
+.cabecalho-linha-semana{
+  min-width:210px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  padding-right:10px;
+  border-right:1px solid var(--card-border);
+}
+
+.grade-dias-semana{
+  flex:1;
+  display:grid;
+  grid-template-columns:repeat(7, minmax(88px, 1fr));
+  gap:8px;
+}
+
+.card-dia-semana{
+  border:1px solid var(--card-border);
+  border-radius:10px;
+  padding:10px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.topo-dia-semana{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+
+.numero-dia-semana{
+  font-weight:900;
+  color:var(--text);
+  font-size:14px;
+}
+
+.sigla-dia-semana{
+  font-weight:900;
+  font-size:11px;
+  color:#6b7280;
+  text-transform:uppercase;
+}
+
+.barras-turnos-semana{
+  display:flex;
+  gap:6px;
+  align-items:center;
+}
+
+.barra-turno-semana{
+  height:10px;
+  flex:1;
+  border-radius:999px;
+  background:rgba(156,163,175,.25);
+  border:1px solid rgba(0,0,0,.04);
+}
+
+.barra-turno-semana.livre{ background:rgba(22,163,74,.25); border-color:rgba(22,163,74,.20); }
+
+.barra-turno-semana.ocupada{ background:rgba(220,38,38,.25); border-color:rgba(220,38,38,.20); }
+
+.barra-turno-semana.apagado{ background:rgba(156,163,175,.22); border-color:rgba(0,0,0,.04); }
+
+@media (max-width:1100px){.grade-dias-semana{ grid-template-columns:repeat(4, minmax(88px, 1fr)); }}
+
+@media (max-width:820px){.linha-semana{ flex-direction:column; }
+.cabecalho-linha-semana{
+    border-right:0;
+    border-bottom:1px solid var(--card-border);
+    padding-right:0;
+    padding-bottom:10px;
+    min-width:auto;
+  }
+.grade-dias-semana{ grid-template-columns:repeat(3, minmax(88px, 1fr)); }}
+
+.mes-dividido{
+  display:grid;
+  grid-template-columns:1fr 340px;
+  gap:14px;
+  align-items:start;
+}
+
+@media (max-width:1100px){.mes-dividido{ grid-template-columns:1fr; }}
+
+.mes{
+  background:#fff;
+  border:1px solid var(--card-border);
+  border-radius:10px;
+  padding:14px;
+}
+
+.navegacao-mes{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.titulo-navegacao-mes{
+  font-weight:900;
+  color:#111827;
+  text-transform:capitalize;
+}
+
+.botao-navegacao-mes{
+  width:36px;
+  height:36px;
+  border-radius:12px;
+  border:1px solid rgba(0,0,0,.10);
+  background:rgba(0,0,0,.03);
+  cursor:pointer;
+  font-weight:900;
+}
+
+.botao-navegacao-mes:hover{
+  background:rgba(255,107,44,.10);
+  border-color:rgba(255,107,44,.25);
+}
+
+.cabecalho-dias-mes{
+  display:grid;
+  grid-template-columns:repeat(7, 1fr);
+  gap:8px;
+  margin-bottom:10px;
+}
+
+.cabecalho-dias-mes div{
+  font-size:11px;
+  font-weight:900;
+  color:#6b7280;
+  text-transform:uppercase;
+  padding:6px 8px;
+}
+
+.grade-dias-mes{
+  display:grid;
+  grid-template-columns:repeat(7, 1fr);
+  gap:8px;
+}
+
+.celula-dia{
+  appearance:none;
+  background:#fff;
+  width:100%;
+  text-align:left;
+  cursor:pointer;
+
+  border:1px solid var(--card-border);
+  border-radius:10px;
+  padding:8px;
+  min-height:78px;
+
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.celula-dia.fora-mes{ opacity:.45; }
+
+.celula-dia.selecionado{
+  border-color:rgba(0,58,112,.55);
+  background:rgba(0,58,112,.05);
+  box-shadow:0 10px 22px rgba(0,0,0,.08);
+}
+
+.celula-dia.feriado{
+  border-color:rgba(255,107,44,.45);
+  background:rgba(255,107,44,.04);
+  cursor:not-allowed;
+  opacity:.95;
+}
+
+.celula-dia.feriado[disabled]{ pointer-events:none; }
+
+.celula-dia:focus{ outline:none; }
+
+.celula-dia:focus-visible{
+  outline:2px solid rgba(0,58,112,.45);
+  outline-offset:2px;
+}
+
+.celula-dia.selecionado:focus-visible{ outline:none; }
+
+.numero-dia{
+  font-size:13px;
+  font-weight:900;
+  color:var(--text);
+}
+
+.barra-ocupacao{
+  height:10px;
+  border-radius:999px;
+  background:rgba(22,163,74,.20);
+  border:1px solid rgba(22,163,74,.18);
+  overflow:hidden;
+  position:relative;
+}
+
+.barra-ocupacao::after{
+  content:"";
+  position:absolute;
+  top:0; bottom:0; left:0;
+  width:calc(var(--busy-pct, 0) * 1%);
+  background:rgba(220,38,38,.35);
+  border-right:1px solid rgba(220,38,38,.25);
+}
+
+.texto-ocupacao{
+  font-size:11px;
+  font-weight:900;
+  color:#6b7280;
+}
+
+.celula-dia.feriado .barra-ocupacao,
+.celula-dia.feriado .texto-ocupacao{ display:none !important; }
+
+.etiqueta-feriado{
+  font-size:10px;
+  font-weight:900;
+  color:#D95F00;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.painel-dia{
+  background:#fff;
+  border:1px solid var(--card-border);
+  border-radius:10px;
+  padding:14px;
+}
+
+.data-painel{
+  font-size:26px;
+  font-weight:900;
+  color:var(--text);
+  margin-bottom:6px;
+}
+
+.subtitulo-painel{
+  font-size:12px;
+  font-weight:900;
+  color:#6b7280;
+  margin-bottom:12px;
+}
+
+.vazio-painel{
+  border:1px dashed rgba(156,163,175,.6);
+  border-radius:10px;
+  padding:14px;
+  font-weight:900;
+  color:#6b7280;
+  background:rgba(156,163,175,.08);
+}
+
+.lista-painel{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.item-painel{
+  border:1px solid var(--card-border);
+  border-radius:10px;
+  padding:12px;
+  border-left:6px solid rgba(220,38,38,.55);
+  background:rgba(220,38,38,.05);
+}
+
+.item-painel.estado-livre{
+  border-left-color:rgba(22,163,74,.60);
+  background:rgba(22,163,74,.06);
+}
+
+.topo-item-painel{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:8px;
+}
+
+.sala-item-painel{
+  font-size:12px;
+  font-weight:900;
+  color:var(--blue);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.professor-item-painel{
+  font-size:13px;
+  font-weight:900;
+  color:var(--text);
+}
+
+.meta-item-painel{
+  font-size:12px;
+  font-weight:800;
+  color:#374151;
+}
+
+.sobreposicao-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(8,8,10,.45);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .14s ease;
+  z-index:3000;
+}
+
+.sobreposicao-modal.aberto{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.modal{
+  width:min(560px, 100%);
+  background:#fff;
+  border-radius:16px;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 22px 50px rgba(0,0,0,.18);
+  overflow:hidden;
+  transform:translateY(10px);
+  transition:transform .14s ease;
+}
+
+.sobreposicao-modal.aberto .modal{ transform:translateY(0); }
+
+.cabecalho-modal{
+  padding:14px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+
+.titulo-modal{
+  font-size:16px;
+  font-weight:900;
+  color:var(--text);
+}
+
+.fechar-modal{
+  border:none;
+  background:rgba(0,0,0,.04);
+  border:1px solid rgba(0,0,0,.06);
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:900;
+}
+
+.corpo-modal{
+  padding:14px 16px;
+  display:grid;
+  gap:14px;
+}
+
+.campo{ display:grid; gap:8px; }
+
+.rotulo{
+  font-size:12px;
+  font-weight:900;
+  color:#374151;
+}
+
+.entrada{
+  border:1px solid rgba(0,0,0,.12);
+  border-radius:12px;
+  padding:10px 12px;
+  font-weight:800;
+  outline:none;
+}
+
+.entrada:focus{
+  border-color:rgba(255,107,44,.55);
+  box-shadow:0 0 0 4px rgba(255,107,44,.18);
+}
+
+.linha{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.pilula{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:1px solid rgba(0,0,0,.10);
+  background:rgba(0,0,0,.03);
+  border-radius:999px;
+  padding:8px 12px;
+  font-weight:900;
+  cursor:pointer;
+  user-select:none;
+}
+
+.pilula input{ accent-color:var(--orange); }
+
+.acoes-modal{
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+  padding:14px 16px;
+  border-top:1px solid rgba(0,0,0,.06);
+}
+
+.botao{
+  border:1px solid rgba(0,0,0,.12);
+  background:#fff;
+  border-radius:12px;
+  padding:10px 14px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.botao.primario{
+  background:rgba(255,107,44,.12);
+  border-color:rgba(255,107,44,.28);
+  color:var(--orange);
+}
+
+.botao:hover{ transform:translateY(-1px); }
+
+@media (min-width:1200px){.grade-salas{ grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); }}
+
+@media (max-width:1199px){.cabecalho-mapa h1{ font-size:22px; }
+.grade-salas{ grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); }
+.mes-dividido{ grid-template-columns:1fr; }}
+
+@media (max-width:767px){.cabecalho-mapa{ flex-direction:column; align-items:flex-start; }
+.controles-mapa{ width:100%; justify-content:space-between; gap:8px; }
+.filtro-periodo{ flex:1; justify-content:center; }
+.grade-salas{ grid-template-columns:1fr; }
+.card-sala{ padding:12px; }
+.linha-turno{ padding:10px; }
+.info-turno{ font-size:11px; }
+.linha-semana{ flex-direction:column; }
+.cabecalho-linha-semana{
+    border-right:0;
+    border-bottom:1px solid var(--card-border);
+    padding-bottom:8px;
+  }
+.grade-dias-semana{ grid-template-columns:repeat(2, 1fr); }
+.celula-dia{ min-height:64px; padding:6px; }
+.numero-dia{ font-size:12px; }
+.texto-ocupacao{ font-size:10px; }
+.acoes-modal{ flex-direction:column; }
+.botao{ width:100%; }
+.mes-dividido{
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+.mes{
+    padding: 0 !important;
+    border-radius: 12px;
+    overflow: hidden; /* corta sobras */
+  }
+.navegacao-mes{
+    padding: 10px 10px 6px;
+    margin: 0 !important;
+  }
+.titulo-navegacao-mes{
+    font-size: 14px;
+  }
+.cabecalho-dias-mes,
+  .grade-dias-mes{
+    grid-template-columns: repeat(7, 1fr) !important;
+    gap: 0 !important;
+  }
+.cabecalho-dias-mes div{
+    padding: 8px 0 !important;
+    text-align: center;
+    font-size: 10px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+.celula-dia{
+    border-radius: 0 !important;
+    padding: 6px !important;
+    min-height: 0 !important;
+    height: auto !important;
+
+    aspect-ratio: 1 / 1;     /* quadrado */
+    gap: 4px !important;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    border-right: 1px solid rgba(0,0,0,0.06);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+.grade-dias-mes .celula-dia:nth-child(7n + 1){
+    border-left: 1px solid rgba(0,0,0,0.06);
+  }
+.numero-dia{
+    font-size: 12px !important;
+    line-height: 1 !important;
+  }
+.barra-ocupacao{ height: 7px !important; }
+.texto-ocupacao{ display: none !important; }
+.etiqueta-feriado{
+    display: none !important;
+  }
+.celula-dia.feriado::after{
+    content:"";
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: rgba(255,107,44,0.9);
+    margin-top: auto;
+  }
+.celula-dia.selecionado{
+    box-shadow: none !important;
+  }}
+
+.celula-dia.feriado {
+  background: rgba(255, 215, 0, 0.1) !important;
+  border-color: rgba(255, 215, 0, 0.3) !important;
+  color: #b8860b !important;
+  cursor: not-allowed !important;
+}
+
+.celula-dia.feriado:hover {
+  background: rgba(255, 215, 0, 0.15) !important;
+}
+
+.etiqueta-feriado {
+  font-size: 9px !important;
+  font-weight: 900 !important;
+  color: #b8860b !important;
+  background: rgba(255, 215, 0, 0.2) !important;
+  padding: 2px 4px !important;
+  border-radius: 4px !important;
+  margin-top: 2px !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.feriado-info {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05)) !important;
+  border-color: rgba(255, 215, 0, 0.3) !important;
+  color: #b8860b !important;
+  text-align: center !important;
+  padding: 30px !important;
+}
+
+.card-dia-semana.dia-feriado {
+  background: rgba(255, 215, 0, 0.05) !important;
+  border-color: rgba(255, 215, 0, 0.2) !important;
+}
+
+@media (max-width: 767px){.etiqueta-feriado {
+    display: none !important;
+  }
+.celula-dia.feriado::after {
+    content: "🎉";
+    font-size: 10px;
+    margin-top: auto;
+  }}
+
+.legenda-ocupacao {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.item-legenda {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 900;
+  color: #374151;
+}
+
+.bolinha-legenda {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+}
+
+.bolinha-legenda.baixa {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.bolinha-legenda.media {
+  background: linear-gradient(135deg, #eab308, #f59e0b);
+}
+
+.bolinha-legenda.alta {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+/* Legenda do modo sala específica (mês) */
+.bolinha-legenda.livre {
+  background: rgba(22,163,74,.85);
+}
+
+.bolinha-legenda.ocupada {
+  background: rgba(220,38,38,.85);
+}
+
+.bolinha-legenda.apagado {
+  background: rgba(156,163,175,.9);
+}
+
+.mini-barras-turnos {
+  display: flex;
+  gap: 2px;
+  width: 100%;
+  height: 10px;
+  margin: 4px 0;
+}
+
+.mini-barra {
+  flex: 1;
+  height: 100%;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+}
+
+.mini-barra.baixa {
+  background: rgba(22,163,74,.25);
+  border-color: rgba(22,163,74,.20);
+  border: 1px solid var(--card-border);
+}
+
+.mini-barra.media {
+  background:  rgba(235, 196, 80, 0.4);
+}
+
+.mini-barra.alta {
+  background: rgba(220,38,38,.25);
+  border-color: rgba(220,38,38,.20);
+  border: 1px solid rgba(0,0,0,.04);
+}
+
+.legenda-mini {
+  width: auto;
+  height: 12px;
+  margin: 0;
+}
+
+.legenda-mini .mini-barra {
+  width: 10px;
+  border-radius: 2px;
+}
+
+.texto-ocupacao {
+  font-size: 10px;
+  font-weight: 900;
+  color: #6b7280;
+  text-align: center;
+  margin-top: 2px;
+}
+
+@media (max-width: 767px) {.mini-barras-turnos {
+    height: 6px;
+    gap: 1px;
+    margin: 2px 0;
+  }
+.texto-ocupacao {
+    font-size: 8px;
+  }
+.legenda-ocupacao {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+.item-legenda {
+    font-size: 9px;
+  }}
+
+.contadores-turnos {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2px;
+}
+
+.contador-turno {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  flex: 1;
+  font-family: "Montserrat", sans-serif;
+}
+
+.contador-numero {
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.contador-porcento {
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0.8;
+}
+
+.contador-turno[data-cor="baixa"] .contador-numero,
+.contador-turno[data-cor="baixa"] .contador-porcento {
+  color: #16a34a; /* verde */
+}
+
+.contador-turno[data-cor="media"] .contador-numero,
+.contador-turno[data-cor="media"] .contador-porcento {
+  color: #f59e0b; /* amarelo */
+}
+
+.contador-turno[data-cor="alta"] .contador-numero,
+.contador-turno[data-cor="alta"] .contador-porcento {
+  color: #dc2626; /* vermelho */
+}
+
+.celula-dia {
+  min-height: 85px; /* Aumentado para caber contadores */
+  padding: 8px 6px; /* Ajuste no padding */
+  gap: 4px; /* Reduzido gap entre elementos */
+}
+
+.numero-dia {
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.mini-barras-turnos {
+  display: flex;
+  gap: 2px;
+  width: 100%;
+  height: 8px;
+  margin: 0;
+}
+
+@media (max-width: 767px) {.celula-dia {
+    min-height: 75px !important;
+    padding: 6px 4px !important;
+    gap: 3px !important;
+  }
+.numero-dia {
+    font-size: 12px !important;
+  }
+.mini-barras-turnos {
+    height: 6px;
+    gap: 1px;
+  }
+.contador-numero {
+    font-size: 9px !important;
+  }
+.contador-porcento {
+    font-size: 7px !important;
+  }
+.contadores-turnos {
+    margin-top: 1px;
+  }}
+
+.celula-dia:hover .contador-numero {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+.celula-dia:hover .mini-barra.baixa {
+  box-shadow: 0 0 4px rgba(34, 197, 94, 0.6);
+}
+
+.celula-dia:hover .mini-barra.media {
+  box-shadow: 0 0 4px rgba(234, 179, 8, 0.6);
+}
+
+.celula-dia:hover .mini-barra.alta {
+  box-shadow: 0 0 4px rgba(239, 68, 68, 0.6);
+}
+/* container das 3 barras */
+.mini-barras-turnos{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 8px;
+}
+
+/* cada barra */
+.mini-barra{
+  height: 6px;
+  border-radius: 999px;
+  position: relative;
+}
+
+/* legenda pequena embaixo: M T N */
+.mini-barras-turnos::after{
+  /* Removido: letras M/T/N estavam poluindo visual */
+  content: "";
+  display: none;
+}
+
+/* ==============================
+   MODO SALA ESPECÍFICA (MÊS)
+   - No filtro por sala, as mini-barras usam as classes
+     .livre / .ocupada / .apagado.
+   - Sem isso, elas ficam sem cor e parecem “quebradas”.
+   ============================== */
+
+/* Livre (verde) */
+.mini-barra.livre{
+  background: rgba(22,163,74,.25);
+  border: 1px solid rgba(22,163,74,.20);
+}
+
+/* Ocupada (vermelho) */
+.mini-barra.ocupada{
+  background: rgba(220,38,38,.25);
+  border: 1px solid rgba(220,38,38,.20);
+}
+
+/* Apagado / desabilitado */
+.mini-barra.apagado{
+  background: rgba(156,163,175,.22);
+  border: 1px solid rgba(0,0,0,.04);
+  opacity: .6;
+}
+
+/* Quando um turno está desabilitado, mantenha a grade mas “mute” */
+.mini-barras-turnos.sala-especifica .mini-barra.apagado{
+  opacity: .35;
+}

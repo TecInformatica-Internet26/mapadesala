@@ -1,0 +1,235 @@
+/* deixa o conteúdo “centralizado” como no mapa */
+.conteudo-principal > section{
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.container h1 {
+  font-size: 32px;
+  border-bottom: 3px solid var(--laranja);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.actions-bar {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--laranja);
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-icon:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background-color: #fff;
+  padding: 20px 25px;
+  position: relative;
+  border-radius: 10px;
+  border:1px solid #e5e7eb;
+}
+
+.btn-edit {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.btn-edit:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.card-h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #003A70;
+}
+
+.info {
+  margin-top: 12px;
+}
+
+.line {
+  height: 2px;
+  background-color: var(--borda);
+  margin: 6px 0;
+  border-radius: 2px;
+}
+
+.modal {
+  position: fixed; /* Garante que fique sobre tudo mesmo com scroll */
+  inset: 0;
+  display: none; /* Escondido por padrão */
+  align-items: center; /* Centraliza vertical */
+  justify-content: center; /* Centraliza horizontal */
+  z-index: 10000;
+  padding: 20px;
+  background: none;
+  width: min(100%);
+}
+
+.modal.is-open {
+  display: flex;
+}
+
+.modal__backdrop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__content {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  animation: modalIn 0.3s ease-out;
+  border-top: 6px solid var(--laranja); /* Detalhe em laranja no topo */
+}
+
+@keyframes modalIn {from { transform: scale(0.95); opacity: 0; }
+to { transform: scale(1); opacity: 1; }}
+
+.modal__header {
+  padding: 20px 25px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal__header h2 {
+  color: var(--azul);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.modal__close {
+  background: var(--bg);
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--azul);
+  transition: all 0.2s;
+}
+
+.modal__close:hover {
+  background: var(--laranja);
+  color: white;
+}
+
+.modal__body {
+  padding: 30px 40px;
+}
+
+.modal__body form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal__body .inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal__body label {
+  font-weight: 600;
+  color: var(--azul);
+  font-size: 14px;
+}
+
+.modal__body input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid var(--borda);
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.modal__body input:focus {
+  outline: none;
+  border-color: var(--laranja);
+}
+
+.buttonCriar {
+  background-color: var(--laranja);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 10px;
+}
+
+.buttonCriar:hover {
+  background-color: #e66e00;
+}
+
+.modal__footer {
+    display: none; /* Escondemos o footer se o botão já estiver no form */
+}
+
+.btn-delete {
+    position: absolute;
+    top: 15px;
+    right: 45px; /* Fica ao lado do botão editar */
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.15s ease;
+}
+
+.btn-delete:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    color: #d9534f; /* Vermelho para indicar perigo */
+}

@@ -1,0 +1,894 @@
+/* deixa o conteúdo “centralizado” como no mapa */
+.conteudo-principal > section{
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.container h1 {
+  font-size: 32px;
+  border-bottom: 3px solid var(--laranja);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.actions-bar {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--laranja);
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-icon:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background-color: #fff;
+  padding: 20px 25px;
+  border-radius: 10px;
+  border:1px solid #e5e7eb;
+  position: relative;
+}
+
+/* =============================
+   FOTO DO PROFESSOR (CARD)
+============================= */
+.card .avatar {
+  position: absolute;
+  left: 22px;
+  top: 18px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.10);
+  background: #fff;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.card .avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card .avatar__fallback {
+  font-size: 20px;
+  opacity: 0.75;
+}
+
+.btn-edit {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.btn-edit:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.professor-nome {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.info {
+  margin-top: 12px;
+}
+
+.turma-info {
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+.line {
+  height: 2px;
+  background-color: var(--borda);
+  margin: 6px 0;
+  border-radius: 2px;
+}
+
+.modal {
+  position: absolute;
+  inset: 0;
+  display: none;
+  z-index: 9999;
+
+  font-size: 18px;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+  width: 100%;
+}
+
+.modal.is-open {
+  display: flex;
+}
+
+.modal__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+.modal__content {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  animation: modalIn 0.3s ease-out;
+  border-top: 6px solid var(--laranja);
+}
+
+@keyframes modalIn {from { transform: scale(0.95); opacity: 0; }
+to { transform: scale(1); opacity: 1; }}
+
+.modal__header {
+  padding: 20px 25px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal__header h2 {
+  color: var(--azul);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.modal__close {
+  background: var(--bg);
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--azul);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__close:hover {
+  background: var(--laranja);
+  color: white;
+  transform: rotate(90deg) scale(1.1);
+}
+
+.modal__body {
+  padding: 30px 40px;
+}
+
+.modal__body form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal__body .inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal__body label {
+  font-weight: 600;
+  color: var(--azul);
+  font-size: 14px;
+}
+
+.modal__body input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid var(--borda);
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.modal__body input:hover {
+  border-color: #b0b0b0;
+}
+
+.modal__body input:focus {
+  outline: none;
+  border-color: var(--laranja);
+  box-shadow: 0 0 0 4px rgba(255, 107, 44, 0.1);
+}
+
+.buttonCriar {
+  background-color: var(--laranja);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 10px;
+}
+
+.buttonCriar[disabled] {
+  background-color: #cfcfcf;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.buttonCriar[disabled]:hover {
+  background-color: #cfcfcf;
+  transform: none;
+  box-shadow: none;
+}
+
+.msg-erro {
+  display: none;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #b3261e;
+}
+
+.msg-erro.ativo {
+  display: block;
+}
+
+.buttonCriar:hover {
+  background-color: #e66e00;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(230, 110, 0, 0.3);
+}
+
+.buttonCriar:active {
+  transform: translateY(0);
+}
+
+.btn-delete {
+  position: absolute;
+  top: 15px;
+  right: 45px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.15s ease;
+}
+
+.btn-delete:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  color: #d9534f;
+}
+/* =====================================================
+   INFO DO CARD (PROFESSORES)
+===================================================== */
+
+.pagina-professores .card{
+  position: relative;
+}
+
+.pagina-professores .professor-nome{
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--azul);
+}
+
+.pagina-professores .info{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.pagina-professores .linha-info{
+  margin: 0;
+  padding: 2px;
+  border-bottom: 1px solid rgba(0,0,0,.10);
+  background: rgba(255,255,255,.75);
+  backdrop-filter: blur(6px);
+}
+
+.pagina-professores .linha-info strong{
+  color: #111827;
+  font-weight: 800;
+}
+
+.pagina-professores .btn-edit{
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  
+  background: rgba(255,255,255,.85);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.pagina-professores .btn-edit:hover{
+  transform: translateY(-1px);
+  
+}
+.pagina-professores .linha-info strong{
+  display:block;
+  margin-bottom: 6px;
+}
+/* botão delete ao lado do edit */
+.pagina-professores .btn-delete{
+  position: absolute;
+  top: 12px;
+  right: 58px; /* fica ao lado do lápis */
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+
+  background: rgba(255,255,255,.85);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.pagina-professores .btn-delete:hover{
+  transform: translateY(-1px);
+  
+}
+
+/* modal excluir menor e central */
+#modalExcluir .modal__content--pequeno{
+  max-width: 420px;
+  height: auto;
+}
+
+#modalExcluir .modal__body--center{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+#modalExcluir .titulo-perigo{
+  color: #d9534f;
+}
+
+#modalExcluir .nome-destaque{
+  color: var(--azul);
+}
+
+#modalExcluir .texto-aviso{
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+#modalExcluir .form-excluir{
+  width: 100%;
+}
+
+#modalExcluir .acoes-excluir{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+#modalExcluir .botao-secundario{
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: rgba(0,0,0,.03);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+#modalExcluir .botao-perigo{
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(217,83,79,.35);
+  background: #d9534f;
+  color: #fff;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+/* =============================
+   FOTO DO PROFESSOR (MODAL)
+============================= */
+.foto-box{
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.foto-preview{
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 3px solid rgba(0,0,0,.10);
+  background: #fff;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.foto-preview img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.foto-preview__txt{
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(0,0,0,.55);
+  text-align: center;
+  padding: 0 10px;
+}
+
+.foto-ajuda{
+  font-size: 12px;
+  color: rgba(0,0,0,.55);
+}
+
+/* =============================
+   VISUALIZADOR (AMPLIAR FOTO)
+============================= */
+.foto-viewer{
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 20000;
+}
+
+.foto-viewer.is-open{
+  display: block;
+}
+
+.foto-viewer__backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(6px);
+}
+
+.foto-viewer__content{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(90vw, 520px);
+  background: #fff;
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: 0 18px 60px rgba(0,0,0,.25);
+}
+
+.foto-viewer__content img{
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  display: block;
+}
+
+.foto-viewer__close{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.10);
+  background: rgba(255,255,255,.85);
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+}
+
+
+/* =========================
+   CARD HEADER (avatar + nome central + ações)
+========================= */
+.card-header{
+  display:flex;
+  align-items:center;
+  position:relative;
+}
+
+.card-header .professor-nome{
+  flex:1;
+  text-align:center;
+  margin:0;
+  padding:0 10px; /* espaço pros botões à direita */
+}
+
+.card-actions{
+  display:flex;
+  gap:10px;
+  position:absolute;
+  right:0;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+.avatar{
+  flex:0 0 auto;
+}
+
+.avatar__fallback{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.06);
+  font-size:10px;
+  letter-spacing:0.5px;
+  font-weight:700;
+  color: rgba(255,255,255,0.75);
+  text-transform:uppercase;
+  line-height:1;
+  padding:6px;
+}
+
+/* =========================
+   CROP MODAL (recorte estilo Discord)
+========================= */
+.crop-modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  z-index:9999;
+}
+.crop-modal.is-open{ display:block; }
+
+.crop-modal__backdrop{
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(8px);
+}
+
+.crop-modal__content{
+  position:relative;
+  width:min(720px, 92vw);
+  margin: 6vh auto 0;
+  background: #111318;
+  border-radius:16px;
+  box-shadow: 0 20px 80px rgba(0,0,0,0.6);
+  overflow:hidden;
+  color:#fff;
+}
+
+.crop-modal__header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px 18px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.crop-modal__header h3{
+  margin:0;
+  font-size:18px;
+  font-weight:700;
+}
+
+.crop-modal__close{
+  background: transparent;
+  border:0;
+  color:#fff;
+  font-size:18px;
+  cursor:pointer;
+  opacity:0.85;
+}
+.crop-modal__close:hover{ opacity:1; }
+
+.crop-modal__body{
+  padding:18px;
+}
+
+.crop-stage{
+  position:relative;
+  width:100%;
+  height:320px;
+  background: rgba(255,255,255,0.04);
+  border-radius:14px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+#cropCanvas{
+  width:100%;
+  height:100%;
+  touch-action:none;
+}
+
+.crop-overlay{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.crop-overlay::before{
+  content:"";
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  border:3px solid rgba(255,255,255,0.9);
+  box-shadow:0 0 0 9999px rgba(0,0,0,0.35);
+}
+
+.crop-controls{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:14px;
+}
+
+.crop-btn{
+  background: rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.12);
+  color:#fff;
+  padding:10px 12px;
+  border-radius:10px;
+  cursor:pointer;
+}
+.crop-btn:hover{ background: rgba(255,255,255,0.12); }
+
+#cropZoom{
+  flex:1;
+}
+
+.crop-modal__footer{
+  display:flex;
+  justify-content:flex-end;
+  gap:12px;
+  padding:14px 18px 18px;
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+
+.btn-sec, .btn-pri{
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.12);
+  cursor:pointer;
+  font-weight:700;
+}
+.btn-sec{
+  background: rgba(255,255,255,0.06);
+  color:#fff;
+}
+.btn-pri{
+  background: #5865f2;
+  border-color: rgba(0,0,0,0);
+  color:#fff;
+}
+.btn-pri:hover{ filter:brightness(1.05); }
+
+/* =========================
+   VIEWER
+========================= */
+.photo-viewer{
+  position:fixed;
+  inset:0;
+  display:none;
+  z-index:9998;
+}
+.photo-viewer.is-open{ display:block; }
+
+.photo-viewer__backdrop{
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+}
+
+.photo-viewer__content{
+  position:relative;
+  width:min(900px, 94vw);
+  height:min(78vh, 700px);
+  margin: 8vh auto 0;
+  background: rgba(20,20,24,0.92);
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.photo-viewer__content img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
+
+.photo-viewer__close{
+  position:absolute;
+  top:12px;
+  right:12px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.14);
+  color:#fff;
+  border-radius:10px;
+  padding:8px 10px;
+  cursor:pointer;
+}
+/* === FIX: topo do card em uma linha (avatar + nome + ações) === */
+.pagina-professores .card-header{
+  display:flex;
+  align-items:center;
+  flex-wrap:nowrap;
+}
+
+.pagina-professores .card-header .avatar{
+  position: static;          /* mata o absolute antigo */
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  margin: 0;
+}
+
+.pagina-professores .card-header .professor-nome{
+  flex: 1 1 auto;
+  text-align: center;
+  margin: 0;
+  white-space: nowrap;       /* não quebrar linha */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pagina-professores .card-header .card-actions{
+  position: static;          /* mata o absolute do bloco */
+  transform: none;
+  display:flex;
+  gap:10px;
+  flex: 0 0 auto;
+}
+
+/* mata os absolutes antigos dos botões dentro do header */
+.pagina-professores .card-header .btn-edit,
+.pagina-professores .card-header .btn-delete{
+  position: static;
+  top: auto;
+  right: auto;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+}
+/* garante tamanho/forma do avatar */
+.avatar{
+  width: 46px;          /* ajusta se quiser */
+  height: 46px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: #f57c00;  /* ou var(--laranja) se existir */
+  cursor: pointer;
+}
+
+/* imagem ocupa tudo */
+.avatar img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* a letra NÃO some */
+.avatar__fallback{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1;
+  color: #fff;
+  text-transform: uppercase;
+}
+.avatar{
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+}
+
+/* quando NÃO tem foto */
+.avatar.is-fallback{
+  display: grid !important;
+  place-items: center !important;
+
+}
+
+.avatar img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.avatar__fallback{
+  display: grid !important;
+  place-items: center !important;
+  width: 100% !important;
+  height: 100% !important;
+
+  color: #FF6B2C !important;
+  font-weight: 800 !important;
+  font-size: 18px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+}

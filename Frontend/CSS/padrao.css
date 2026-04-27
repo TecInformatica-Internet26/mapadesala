@@ -1,0 +1,1271 @@
+/* =====================================================
+   BASE GLOBAL (TODAS AS TELAS)
+===================================================== */
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+:root{
+  --laranja:#FF6B2C;
+  --azul:#003A70;
+
+  --bg:#f8f9fa;
+  --texto:#111827;
+
+  --livre:#16a34a;
+  --ocupada:#dc2626;
+  --muted:#9ca3af;
+
+  --borda:#e5e7eb;
+}
+
+body{
+  font-family:'Montserrat',sans-serif;
+  background:var(--bg);
+  color:#333;
+  min-height:100vh;
+}
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+.barra-topo{
+  background:var(--laranja);
+  height:60px;
+  position:fixed;
+  inset:0 0 auto 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+  z-index:1000;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+
+.logo-topo img{ height:38px; }
+
+.botao-usuario{
+  background:#fff;
+  border:none;
+  color:var(--laranja);
+  font-size:24px;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  cursor:pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.botao-usuario img{
+  width:22px;
+  height:22px;
+  opacity:.85;
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.botao-usuario:hover img{
+  opacity:1;
+  transform: scale(1.05);
+}
+
+
+/* botão menu (só mobile) */
+.botao-menu{
+  border:none;
+  background:transparent;
+  color:#fff;
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  font-size:22px;
+  font-weight:900;
+  cursor:pointer;
+  display:none;
+}
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+.barra-lateral{
+  background:var(--azul);
+  width:240px;
+  position:fixed;
+  top:60px;
+  left:0;
+  bottom:0;
+  color:#fff;
+  padding-top:20px;
+  z-index:900;
+  transition:transform .3s ease;
+
+  display:flex;
+  flex-direction:column;
+}
+
+.barra-lateral ul{ list-style:none; }
+
+.barra-lateral .nav-lateral ul li a{
+  text-decoration:none;
+  color:#fff;
+  display:block;
+}
+
+.nav-lateral{ flex:1; }
+
+/* mantém o visual e o hover exatamente igual */
+.item-nav{
+  padding: 0;           /* <- tira daqui */
+  cursor: pointer;
+  font-weight: 500;
+  transition: background .2s;
+}
+
+.item-nav:hover,
+.item-nav.ativo{
+  background: rgba(255,255,255,.15);
+}
+
+/* agora o link ocupa o item inteiro + recebe o padding */
+.item-nav > a{
+  display: block;
+  padding: 16px 24px;   /* <- vem pra cá */
+  color: inherit;
+  text-decoration: none;
+}
+
+
+
+.rodape-lateral{
+  margin-top:auto;
+  padding:14px 18px;
+  border-top:1px solid rgba(255,255,255,.12);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.relogio-lateral{
+  font-weight:900;
+  letter-spacing:1px;
+  color:rgba(255,255,255,.92);
+  font-size:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;
+  padding:10px 12px;
+}
+
+.creditos-lateral{
+  font-size:11px;
+  font-weight:700;
+  line-height:1.25;
+  text-align:center;
+  color:rgba(255,255,255,.86);
+  opacity:.95;
+}
+.botao-sair-lateral{
+  width: 100%;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.92);
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-weight: 900;
+  cursor: pointer;
+  text-align: center;
+  transition: background .12s ease, transform .12s ease, border-color .12s ease;
+}
+
+.botao-sair-lateral:hover{
+  background: rgba(255,255,255,.10);
+  border-color: rgba(255,255,255,.28);
+  transform: translateY(-1px);
+}
+
+.botao-sair-lateral:active{
+  transform: translateY(0);
+}
+
+/* --- Compatibilidade: classes usadas em creditos.css (alias) --- */
+.sidebar{
+  background: linear-gradient(180deg, var(--azul) 0%, #002850 100%);
+  box-shadow: 4px 0 12px rgba(0,0,0,0.15);
+  position: fixed;
+  top: 60px;
+  left: 0;
+  bottom: 0;
+  width: 240px;
+  color: #fff;
+  padding-top: 20px;
+  z-index: 900;
+  transition: transform .3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-nav{ flex: 1; }
+.sidebar-nav ul{ list-style: none; padding: 0; margin: 0; }
+
+.nav-item{
+  padding: 16px 24px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background .2s;
+  color: #fff;
+}
+.nav-item:hover,
+.nav-item.ativo,
+.nav-item.active{ background: rgba(255,255,255,0.15); }
+
+.sidebar-footer{
+  margin-top: auto;
+  padding: 14px 18px;
+  border-top: 1px solid rgba(255,255,255,.12);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* overlay do mobile (fecha sidebar) */
+.sobreposicao-mobile{
+  position:fixed;
+  inset:0;
+  background:rgba(17,24,39,0.45);
+  opacity:0;
+  pointer-events:none;
+  transition: opacity .18s ease;
+  z-index:850;
+}
+
+/* =====================================================
+   CONTEÚDO PADRÃO
+===================================================== */
+.conteudo-principal{
+  margin-left:240px;
+  margin-top:60px;
+  padding:20px 30px 40px;
+  width: calc(100% - 240px);
+  max-width: calc(100% - 240px);
+}
+
+/* header de página reaproveitável */
+.cabecalho-pagina{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:24px;
+  flex-wrap:wrap;
+  gap:16px;
+}
+
+
+/* área de ações (ex: + e filtro) */
+.barra-acoes{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* botão ícone base */
+.botao-icone{
+  border:1px solid rgba(0,0,0,.10);
+  background:#fff;
+  width:48px;
+  height:48px;
+  border-radius:10px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.botao-icone:hover{
+  transform: translateY(-1px);
+  box-shadow:0 10px 22px rgba(0,0,0,.08);
+}
+
+/* botão de filtro (com bolinha quando ativo) */
+.botao-filtro{
+  position:relative;
+}
+.botao-filtro.tem-filtro::after{
+  content:'';
+  position:absolute;
+  top:6px;
+  right:6px;
+  width:9px;
+  height:9px;
+  border-radius:999px;
+  background:var(--laranja);
+  box-shadow:0 0 0 3px rgba(255,107,44,.18);
+}
+
+/* =====================================================
+   MENU USUÁRIO (POPOVER)
+===================================================== */
+.menu-usuario{
+  position:fixed;
+  top:66px;
+  right:18px;
+  width:220px;
+  background:#fff;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:12px;
+  box-shadow:0 18px 34px rgba(0,0,0,.14);
+  overflow:hidden;
+  transform:translateY(-6px);
+  opacity:0;
+  pointer-events:none;
+  transition:transform .14s ease, opacity .14s ease;
+  z-index:2000;
+}
+.menu-usuario.aberto{
+  transform:translateY(0);
+  opacity:1;
+  pointer-events:auto;
+}
+.menu-usuario button{
+  width:100%;
+  border:none;
+  background:transparent;
+  text-align:left;
+  padding:12px 14px;
+  font-weight:900;
+  color:var(--texto);
+  cursor:pointer;
+}
+.menu-usuario img{
+  width: 7%;
+  margin-right: 5px;
+}
+.menu-usuario button:hover{
+  background:rgba(255,107,44,.08);
+  color:var(--laranja);
+}
+
+/* =====================================================
+   MODAL BASE (FILTROS)
+===================================================== */
+.sobreposicao-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(8,8,10,.45);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .14s ease;
+  z-index:3000;
+}
+.sobreposicao-modal.aberto{
+  opacity:1;
+  pointer-events:auto;
+}
+
+
+/* Modal de filtros (namespaced, evita conflito com .modal das páginas) */
+.sobreposicao-modal-filtros{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+  background:rgba(8,8,10,.45);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .15s ease;
+  z-index:3000;
+}
+.sobreposicao-modal-filtros.aberto{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.modal-filtros{
+  width:min(560px, 100%);
+  background:rgba(255,255,255,.96);
+  border-radius:12px;
+  border:1px solid rgba(0,0,0,.10);
+  box-shadow:0 22px 50px rgba(0,0,0,.18);
+  overflow:hidden;
+  transform:translateY(10px);
+  transition:transform .14s ease;
+}
+.sobreposicao-modal-filtros.aberto .modal-filtros{ transform:translateY(0); }
+
+/* Ações do modal de filtros (Aplicar / Limpar) */
+.modal-filtros .linha-acoes{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  padding-top:6px;
+}
+.modal-filtros .botao-secundario,
+.modal-filtros .botao-primario{
+  border:1px solid rgba(0,0,0,.12);
+  background:#fff;
+  border-radius:12px;
+  padding:10px 14px;
+  font-weight:900;
+  cursor:pointer;
+  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+}
+.modal-filtros .botao-secundario:hover{ transform: translateY(-1px); }
+.modal-filtros .botao-primario{
+  background:rgba(255,107,44,.12);
+  border-color:rgba(255,107,44,.28);
+  color:var(--laranja);
+}
+.modal-filtros .botao-primario:hover{ transform: translateY(-1px); }
+
+.linha--grid2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+/* IMPORTANTE:
+   A classe `.modal` também é usada nos modais das páginas (ex: professores/salas).
+   Para não quebrar esses modais, o estilo abaixo é APENAS para o modal de filtros
+   (que vive dentro de `.sobreposicao-modal`).
+*/
+.sobreposicao-modal .modal{
+  width:min(560px, 100%);
+  background:#fff;
+  border-radius:16px;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 22px 50px rgba(0,0,0,.18);
+  overflow:hidden;
+  transform:translateY(10px);
+  transition:transform .14s ease;
+}
+.sobreposicao-modal.aberto .modal{ transform:translateY(0); }
+
+.cabecalho-modal{
+  padding:14px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+.titulo-modal{
+  font-size:16px;
+  font-weight:900;
+  color:var(--texto);
+}
+.fechar-modal{
+  border:none;
+  background:rgba(0,0,0,.04);
+  border:1px solid rgba(0,0,0,.06);
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:900;
+}
+
+.corpo-modal{
+  padding:14px 16px;
+  display:grid;
+  gap:14px;
+}
+
+.campo{ display:grid; gap:8px; }
+.rotulo{
+  font-size:12px;
+  font-weight:900;
+  color:#374151;
+}
+.entrada{
+  border:1px solid rgba(0,0,0,.12);
+  border-radius:12px;
+  padding:10px 12px;
+  font-weight:800;
+  outline:none;
+}
+.entrada:focus{
+  border-color:rgba(255,107,44,.55);
+  box-shadow:0 0 0 4px rgba(255,107,44,.18);
+}
+
+.linha{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.pilula{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:1px solid rgba(0,0,0,.10);
+  background:rgba(0,0,0,.03);
+  border-radius:999px;
+  padding:8px 12px;
+  font-weight:900;
+  cursor:pointer;
+  user-select:none;
+}
+.pilula input{ accent-color:var(--laranja); }
+
+.acoes-modal{
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+  padding:14px 16px;
+  border-top:1px solid rgba(0,0,0,.06);
+}
+
+.botao{
+  border:1px solid rgba(0,0,0,.12);
+  background:#fff;
+  border-radius:12px;
+  padding:10px 14px;
+  font-weight:900;
+  cursor:pointer;
+}
+.botao.primario{
+  background:rgba(255,107,44,.12);
+  border-color:rgba(255,107,44,.28);
+  color:var(--laranja);
+}
+.botao:hover{ transform:translateY(-1px); }
+
+/* =====================================================
+   PAINEL DE FILTROS (GLOBAL)
+===================================================== */
+
+.painel-filtros{
+  position: fixed;
+  top: 70px;
+  right: 16px;
+  width: min(360px, calc(100vw - 32px));
+  background: #fff;
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  box-shadow: 0 18px 50px rgba(0,0,0,.18);
+  padding: 14px;
+  z-index: 9999;
+
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity .15s var(--transicao-pagina-ease, ease),
+              transform .15s var(--transicao-pagina-ease, ease);
+}
+
+.painel-filtros.is-open{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.painel-filtros__topo{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.painel-filtros__titulo{
+  font-weight: 900;
+  color: var(--azul);
+  font-size: 14px;
+}
+
+.painel-filtros__fechar{
+  border: 1px solid rgba(0,0,0,.12);
+  background: rgba(0,0,0,.03);
+  border-radius: 10px;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.painel-filtros__campo{
+  display:flex;
+  flex-direction:column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.painel-filtros__label{
+  font-size: 12px;
+  font-weight: 800;
+  color: #374151;
+}
+
+.painel-filtros__input{
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.14);
+  outline: none;
+  font-weight: 600;
+}
+
+.painel-filtros__input:focus{
+  border-color: rgba(255,107,44,.55);
+  box-shadow: 0 0 0 3px rgba(255,107,44,.18);
+}
+
+.painel-filtros__acoes{
+  display:flex;
+  gap: 10px;
+  justify-content:flex-end;
+}
+
+.painel-filtros__btn{
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: rgba(0,0,0,.03);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.painel-filtros__btn--primario{
+  background: var(--laranja);
+  border-color: rgba(255,107,44,.40);
+  color: #fff;
+}
+
+/* =====================================================
+   MODAL BASE (GLOBAL) — usado pelo filtro
+===================================================== */
+
+.sobreposicao-modal{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  z-index: 9999;
+  display: none;
+  padding: 18px;
+}
+
+.sobreposicao-modal.aberto{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sobreposicao-modal .modal{
+  width: min(520px, calc(100vw - 36px));
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--borda);
+  box-shadow: 0 24px 70px rgba(0,0,0,.25);
+  overflow: hidden;
+}
+
+.cabecalho-modal{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px dashed rgba(0,0,0,.16);
+}
+
+.titulo-modal{
+  font-weight: 900;
+  color: var(--azul);
+}
+
+.fechar-modal{
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: rgba(0,0,0,.04);
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.corpo-modal{ padding: 14px 16px; }
+
+.campo{ display:flex; flex-direction:column; gap: 8px; margin-bottom: 12px; }
+.rotulo{ font-weight: 800; font-size: 12px; color: #374151; }
+
+.linha{ display:flex; flex-wrap:wrap; gap: 8px; }
+
+.pilula{
+  display:flex;
+  align-items:center;
+  gap: 8px;
+  padding: 9px 10px;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 999px;
+  background: rgba(0,0,0,.03);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.entrada{
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.14);
+  outline: none;
+  font-weight: 600;
+}
+
+.entrada:focus{
+  border-color: rgba(255,107,44,.55);
+  box-shadow: 0 0 0 3px rgba(255,107,44,.18);
+}
+
+.acoes-modal{
+  display:flex;
+  justify-content:flex-end;
+  gap: 10px;
+  padding: 14px 16px;
+  border-top: 1px dashed rgba(0,0,0,.16);
+}
+
+.botao{
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: rgba(0,0,0,.03);
+  font-weight: 900;
+  cursor:pointer;
+}
+
+.botao.primario{
+  background: var(--laranja);
+  border-color: rgba(255,107,44,.40);
+  color: #fff;
+}
+
+
+/* =====================================================
+   CORRIGE ESTOURO HORIZONTAL (GLOBAL)
+===================================================== */
+
+/* 1) nunca permitir scroll horizontal no site */
+html, body{
+  overflow-x: hidden;
+}
+
+/* 2) garante que o main não estoure por causa de flex/grid */
+.conteudo-principal{
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* 3) qualquer bloco dentro do main pode encolher */
+.conteudo-principal *{
+  min-width: 0;
+}
+
+/* 4) mídia (img/svg/canvas) nunca estoura */
+img, svg, canvas, video{
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* =====================================================
+   TRANSIÇÃO ENTRE PÁGINAS (GLOBAL, DIRECIONAL, EXIT+ENTER)
+===================================================== */
+
+:root{
+  --transicao-pagina-dur: 220ms;
+  --transicao-pagina-dist: 14px;
+  --transicao-pagina-ease: cubic-bezier(.22, 1, .36, 1); /* suave e “premium” */
+}
+
+@media (prefers-reduced-motion: reduce){
+  body[class*="transicao-pagina"] .conteudo-principal{
+    animation: none !important;
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* garante base */
+.conteudo-principal{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+
+  will-change: transform, opacity, filter;
+  backface-visibility: hidden;
+}
+
+
+/* ===== EXIT ===== */
+body.transicao-pagina--down .conteudo-principal{
+  animation: pagina-exit-down var(--transicao-pagina-dur) var(--transicao-pagina-ease) forwards;
+}
+
+body.transicao-pagina--up .conteudo-principal{
+  animation: pagina-exit-up var(--transicao-pagina-dur) var(--transicao-pagina-ease) forwards;
+}
+
+/* ===== ENTER (quando a nova página carrega) ===== */
+body.entrada-pagina--down .conteudo-principal{
+  animation: pagina-enter-down calc(var(--transicao-pagina-dur) + 60ms) var(--transicao-pagina-ease);
+}
+
+body.entrada-pagina--up .conteudo-principal{
+  animation: pagina-enter-up calc(var(--transicao-pagina-dur) + 60ms) var(--transicao-pagina-ease);
+}
+/* =====================================================
+   TRANSIÇÃO: TOPBAR + SIDEBAR (SEM PARALLAX, SÓ VIDA)
+===================================================== */
+
+.barra-topo,
+.barra-lateral{
+  filter: blur(0);
+  opacity: 1;
+  will-change: opacity, filter;
+}
+
+/* EXIT */
+body.transicao-pagina--down .barra-topo,
+body.transicao-pagina--down .barra-lateral,
+body.transicao-pagina--up .barra-topo,
+body.transicao-pagina--up .barra-lateral{
+  animation: ui-exit var(--transicao-pagina-dur) var(--transicao-pagina-ease) forwards;
+}
+
+/* ENTER */
+body.entrada-pagina--down .barra-topo,
+body.entrada-pagina--down .barra-lateral,
+body.entrada-pagina--up .barra-topo,
+body.entrada-pagina--up .barra-lateral{
+  animation: ui-enter calc(var(--transicao-pagina-dur) + 40ms) var(--transicao-pagina-ease);
+}
+
+/* keyframes */
+@keyframes ui-exit{
+  to{ opacity: 1; filter: blur(1px); }
+}
+@keyframes ui-enter{
+  from{ opacity: 1; filter: blur(1px); }
+  to{ opacity: 1; filter: blur(0); }
+}
+/* keyframes — down = você desceu no menu */
+@keyframes pagina-exit-down{
+  to{
+    opacity: 0;
+    transform: translateY(calc(var(--transicao-pagina-dist) * -1)) scale(.99);
+    filter: blur(2.75px);
+  }
+}
+
+@keyframes pagina-enter-down{
+  from{
+    opacity: 0;
+    transform: translateY(var(--transicao-pagina-dist)) scale(.99);
+    filter: blur(2.75px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes pagina-exit-up{
+  to{
+    opacity: 0;
+    transform: translateY(var(--transicao-pagina-dist)) scale(.99);
+    filter: blur(2.75px);
+  }
+}
+
+@keyframes pagina-enter-up{
+  from{
+    opacity: 0;
+    transform: translateY(calc(var(--transicao-pagina-dist) * -1)) scale(.99);
+    filter: blur(2.75px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.menu-usuario__cabecalho{
+  padding: 12px;
+  border-bottom: 1px dashed rgba(0,0,0,.14);
+}
+
+.menu-usuario__papel{
+  font-weight: 900;
+  color: var(--azul);
+}
+
+
+/* =====================================================
+   MODAIS DAS PÁGINAS (GLOBAL)
+   - NÃO confundir com o modal do filtro (que usa `.sobreposicao-modal .modal`).
+   - Aqui miramos apenas wrappers que usam `aria-hidden` (meuModal, modalExcluir...).
+===================================================== */
+
+/* wrapper do modal (full-screen overlay) */
+.modal[aria-hidden]{
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  z-index: 4000; /* acima do header/sidebar */
+}
+.modal[aria-hidden].is-open{ display: flex; }
+
+/* backdrop com blur (cobre 100% do viewport) */
+.modal[aria-hidden] .modal__backdrop{
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(8,8,10,.45);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+/* conteúdo do modal fica acima do backdrop */
+.modal[aria-hidden] .modal__content{
+  position: relative;
+  z-index: 1;
+}
+
+/* quando modal abre, evita que `transform/filter` do body atrapalhe o backdrop */
+body.no-scroll{
+  transform: none !important;
+  filter: none !important;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn img {
+  width: 18px;
+  height: 18px;
+  opacity: .75;
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.icon-btn:hover img {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.icon-btn.delete:hover img {
+  filter: brightness(0) saturate(100%) invert(28%) sepia(87%) saturate(1870%) hue-rotate(350deg);
+}
+
+
+/* =====================================================
+   RESPONSIVO: SIDEBAR OFF-CANVAS
+===================================================== */
+@media (max-width:1199px){
+  .botao-menu{ display:inline-flex; align-items:center; justify-content:center; }
+
+  .barra-lateral{
+    transform:translateX(-100%);
+    box-shadow:16px 0 40px rgba(0,0,0,0.18);
+  }
+
+  body.menu-lateral-aberto .barra-lateral{ transform:translateX(0); }
+  body.menu-lateral-aberto .sobreposicao-mobile{
+    opacity:1;
+    pointer-events:auto;
+  }
+
+  .conteudo-principal{ margin-left:0; }
+}
+
+@media (max-width:767px){
+  .barra-topo{ padding:0 14px; }
+  .logo-topo img{ height:32px; }
+  .conteudo-principal{
+    margin-left: 0;              /* <- ESSENCIAL */
+    width: 100%;                 /* <- garante encaixe */
+    max-width: 100%;
+    padding:16px 14px 32px;      /* já existe no teu bloco */
+  }
+
+  .cabecalho-pagina{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .barra-acoes{ width:100%; justify-content:flex-end; }
+  .menu-usuario{ right:10px; left:10px; width:auto; }
+
+  .acoes-modal{ flex-direction:column; }
+  .botao{ width:100%; }
+}
+
+
+/* =====================================================
+   TOAST (sucesso/erro) — usado após redirect do PHP
+===================================================== */
+.toast{
+  position: fixed;
+  right: 18px;
+  top: 70px; /* abaixo do header */
+  z-index: 5000;
+  min-width: 220px;
+  max-width: min(420px, calc(100vw - 36px));
+  padding: 12px 14px;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.18);
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+}
+.toast.is-show{
+  opacity: 1;
+  transform: translateY(0);
+}
+.toast--success{
+  background: rgba(20, 150, 70, .95);
+  color: #fff;
+}
+.toast--error{
+  background: rgba(200, 45, 45, .95);
+  color: #fff;
+}
+@media (max-width:767px){
+  .toast{ left: 14px; right: 14px; top: 62px; }
+}
+
+/* ===============================
+   SIDEBAR – HOVER PADRÃO (ÚNICO)
+================================ */
+
+.nav-lateral li {
+  list-style: none;
+}
+
+/* o <a> ocupa tudo */
+.nav-lateral li > a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 14px 18px;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* hover SOMENTE aqui */
+.nav-lateral li > a:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+/* ativo */
+.nav-lateral li > a.ativo {
+  background: rgba(255,255,255,0.14);
+  font-weight: 700;
+}
+
+
+.nav-lateral ul {
+  padding: 0;
+  margin: 0;
+}
+
+.nav-lateral li {
+  width: 100%;
+}
+
+/* âncora cobre tudo */
+.nav-lateral li > a {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+/* =====================================================
+   BASE GLOBAL (TODAS AS TELAS)
+===================================================== */
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+:root{
+  --laranja:#FF6B2C;
+  --azul:#003A70;
+  --bg:#f8f9fa;
+  --texto:#111827;
+  --borda:#e5e7eb;
+}
+
+body{
+  font-family:'Montserrat',sans-serif;
+  background:var(--bg);
+  color:#333;
+  min-height:100vh;
+}
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+.barra-topo{
+  background:var(--laranja);
+  height:60px;
+  position:fixed;
+  inset:0 0 auto 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+  z-index:1000;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+
+.logo-topo img{ height:38px; margin-left: 55px;}
+
+.botao-menu{
+  border:none;
+  background:transparent;
+  color:#fff;
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  font-size:22px;
+  cursor:pointer;
+  display:none;
+}
+
+/* =====================================================
+   SIDEBAR (CORRIGIDA DEFINITIVA)
+===================================================== */
+.barra-lateral{
+  background:var(--azul);
+  width:240px;
+  position:fixed;
+  top:60px;
+  left:0;
+  bottom:0;
+  color:#fff;
+  z-index:900;
+  display:flex;
+  flex-direction:column;
+}
+
+.nav-lateral{ flex:1; }
+
+.nav-lateral ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.nav-lateral li{
+  width:100%;
+}
+
+/* 🔥 O LINK É O ITEM */
+.nav-lateral li > a{
+  display:flex;
+  align-items:center;
+  width:100%;
+  padding:16px 24px;
+  color:#fff;
+  text-decoration:none;
+  font-weight:500;
+  transition: background .2s ease;
+}
+
+/* 🔥 hover único */
+.nav-lateral li > a:hover{
+  background:rgba(255,255,255,.15);
+}
+
+/* 🔥 ativo */
+.nav-lateral li > a.ativo{
+  background:rgba(255,255,255,.22);
+  font-weight:700;
+}
+
+/* =====================================================
+   RODAPÉ SIDEBAR
+===================================================== */
+.rodape-lateral{
+  margin-top:auto;
+  padding:14px 18px;
+  border-top:1px solid rgba(255,255,255,.12);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.botao-sair-lateral{
+  width:100%;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  padding:10px 12px;
+  border-radius:12px;
+  font-weight:900;
+  cursor:pointer;
+  transition:.15s;
+}
+.botao-sair-lateral:hover{
+  background:rgba(255,255,255,.12);
+}
+
+/* =====================================================
+   CONTEÚDO
+===================================================== */
+.conteudo-principal{
+  margin-left:240px;
+  margin-top:60px;
+  padding:20px 30px 40px;
+  min-width:0;
+}
+
+/* =====================================================
+   RESPONSIVO
+===================================================== */
+@media (max-width:1199px){
+  .botao-menu{ display:inline-flex; }
+
+  .barra-lateral{
+    transform:translateX(-100%);
+    transition:.3s;
+  }
+
+  body.menu-lateral-aberto .barra-lateral{
+    transform:translateX(0);
+  }
+
+  .conteudo-principal{
+    margin-left:0;
+    width:100%;
+  }
+}
+
+@media (max-width:767px){
+  .conteudo-principal{
+    padding:16px 14px 32px;
+  }
+}

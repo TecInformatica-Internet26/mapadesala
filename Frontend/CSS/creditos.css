@@ -1,0 +1,267 @@
+/* deixa o conteúdo “centralizado” como no mapa */
+.conteudo-principal > section{
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.pagina-creditos{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* container geral */
+.creditos-grid{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* base dos cards */
+.creditos-card{
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px;
+  border-radius: 10px;
+  border:1px solid #e5e7eb;
+}
+
+.creditos-titulo{
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--azul);
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.creditos-titulo::after{
+  content:'';
+  display:block;
+  margin-top: 8px;
+  width: 54px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--laranja);
+}
+
+.creditos-texto{
+  color: #374151;
+  font-weight: 600;
+  line-height: 1.55;
+  font-size: 14px;
+}
+
+/* =====================================================
+   LINHA 1: Sobre + Equipe (2 colunas / mesma altura)
+===================================================== */
+.creditos-linha-topo{
+  display: flex;
+  gap: 16px;
+  align-items: stretch; /* mesma altura */
+}
+
+.creditos-linha-topo > .creditos-card{
+  flex: 1;            /* 50/50 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* deixa o texto respirar e “encher” altura parecida */
+.creditos-linha-topo .creditos-texto{
+  flex: 0 0 auto;
+}
+
+/* =====================================================
+   EQUIPE: nomes com destaque REAL
+===================================================== */
+.nomes-equipe{
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* =====================================================
+   EQUIPE (NOMES + FUNÇÃO) — SOMENTE ISSO
+===================================================== */
+
+.nomes-equipe{
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Linha inteira: nome + badge */
+.nome-pill{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 13px 14px;
+  border-radius: 12px;
+
+  background: rgba(0, 58, 112, 0.045);
+  border: 1px solid rgba(0, 58, 112, 0.16);
+
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
+}
+
+.nome-pill:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(0,0,0,.09);
+  border-color: rgba(255,107,44,.30);
+  background: rgba(0, 58, 112, 0.06);
+}
+
+/* Nome (bem forte) */
+.nome-pill .nome{
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--azul);
+  letter-spacing: .2px;
+  line-height: 1.15;
+}
+
+/* Badge base (função) */
+.nome-pill .funcao{
+  flex: 0 0 auto;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+
+  padding: 7px 10px;
+  border-radius: 999px;
+
+  border: 1px solid rgba(0,0,0,.08);
+  background: rgba(0,0,0,.04);
+  color: #374151;
+
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+}
+
+/* Cores por função (com “carinha de badge”) */
+.nome-pill .funcao--front{
+  background: rgba(69, 255, 44, 0.14);
+  border-color: rgba(18, 88, 11, 0.3);
+  color: #27a002;
+}
+
+.nome-pill .funcao--back{
+  background: rgba(0,58,112,.14);
+  border-color: rgba(0,58,112,.30);
+  color: var(--azul);
+}
+
+.nome-pill .funcao--full{
+  background: rgba(17,24,39,.10);
+  border-color: rgba(17,24,39,.22);
+  color: #111827;
+}
+
+/* Mobile */
+@media (max-width: 767px){
+  .nome-pill{ padding: 12px; }
+  .nome-pill .nome{ font-size: 14px; }
+  .nome-pill .funcao{ font-size: 10px; padding: 6px 9px; }
+}
+
+
+/* =====================================================
+   LINHA 2: Professor + Tecnologias (horizontal)
+===================================================== */
+.creditos-linha-meio{
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+}
+
+/* dois blocos lado a lado */
+.creditos-linha-meio > .creditos-card{
+  flex: 1;
+}
+
+/* professor precisa ser o foco dessa área (mas alunos ainda são o principal na equipe) */
+.creditos-destaque{
+  font-size: 16px;
+  font-weight: 900;
+  color: #111827;
+  margin-top: 6px;
+}
+
+/* tecnologias */
+.tech-stack{
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(0,0,0,.12);
+}
+
+.tech-titulo{
+  font-weight: 900;
+  color: #374151;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  margin-bottom: 10px;
+}
+
+.tech-badges{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tech-badge{
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 12px;
+  color: var(--azul);
+
+  border: 1px solid rgba(255,107,44,.35);
+  background: rgba(255,107,44,.06);
+}
+
+/* =====================================================
+   “Rodapé” do projeto (não parecer footer)
+===================================================== */
+.creditos-card.rodape-projeto{
+  text-align: left;
+  background: #fff;
+  border: 1px solid var(--borda);
+}
+
+.rodape-linha{
+  font-weight: 700;
+  color: #374151;
+  margin-top: 6px;
+}
+
+.rodape-linha strong{
+  font-weight: 900;
+  color: var(--azul);
+  font-size: 16px;
+}
+
+/* =====================================================
+   RESPONSIVO
+===================================================== */
+@media (max-width: 1024px){
+  .creditos-linha-topo,
+  .creditos-linha-meio{
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 767px){
+  .creditos-card{
+    padding: 16px;
+  }
+
+  .nome-pill{
+    font-size: 14px;
+    padding: 11px 12px;
+  }
+}

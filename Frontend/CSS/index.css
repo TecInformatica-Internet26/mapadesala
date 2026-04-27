@@ -1,0 +1,137 @@
+.container{min-height: 100vh;display: flex;flex-direction: column;align-items: center;justify-content: center;gap: 30px;padding: 20px;color: white;text-align: center;background-image: linear-gradient(
+        rgba(0,0,0,0.6),
+        rgba(0,0,0,0.6)
+    ),
+    url("/Frontend/IMG/background_login.jpeg");background-size: cover;background-position: center;background-repeat: no-repeat;}
+
+.container h1{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.container img{
+    width: 100px;
+}
+
+.boxLogin{
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    color: black;
+    padding: 40px 30px;
+    border-radius: 16px;
+    gap: 25px;
+}
+
+.headerLogin h1{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.headerLogin h3{
+    font-size: 16px;
+    font-weight: normal;
+    color: #555;
+}
+
+.headerLogin img{
+    margin-bottom: 5px;
+    width: 90px;
+}
+
+.conjunto{
+    width: 100%;
+}
+
+.boxContent{
+    margin-bottom: 18px;
+}
+
+.boxContent h4{
+    text-align: left;
+    font-size: 16   px;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.boxContent input{
+    width: 100%;
+    height: 36px;
+    border: none;
+    border-radius: 6px;
+    background-color: #e0e0e0;
+    padding: 0 10px;
+    outline: none;
+}
+
+.boxContent button{
+    width: 100%;
+    height: 38px;
+    margin-top: 10px;
+    background-color: #0b2874;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    min-height: 44px;
+}
+
+.boxContent button:hover{
+    background-color: #081f5c;
+}
+
+.boxContent p{
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.boxContent a{
+    color: #0b2874;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.boxContent a:hover{
+    text-decoration: underline;
+}
+
+.erro-login{
+    color: #a0070f;
+    background-color: #ffd2d2;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    text-align: center;
+}
+
+@media (max-width: 480px){.boxLogin{
+        padding: 30px 20px;
+        border-radius: 12px;
+    }
+.headerLogin h1{
+        font-size: 24px;
+    }
+.headerLogin h3{
+        font-size: 14px;
+    }
+.headerLogin img{
+        width: 70px;
+    }
+.boxContent h4{
+        font-size: 14px;
+    }
+.boxContent input,
+    .boxContent button{
+        height: 42px;
+        font-size: 14px;
+    }
+.boxContent p{
+        font-size: 13px;
+    }}
